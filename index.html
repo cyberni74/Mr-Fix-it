@@ -364,12 +364,6 @@
   .contact-row .label{font-size:13px; color:var(--text-dim); margin-bottom:3px; font-weight:600;}
   .contact-row .value{font-size:17px; font-weight:600;}
   .contact-row a.value{color:var(--cyan);}
-  .line-note{
-    margin-top:6px; display:flex; align-items:center; gap:8px;
-    padding:10px 14px; border-radius:9px; background:rgba(182,255,63,.08);
-    border:1px solid rgba(182,255,63,.25); font-size:13.5px; color:var(--text-dim);
-  }
-  .line-note svg{flex:none; width:16px; height:16px; stroke:var(--lime);}
   .map-btn{margin-top:18px; width:100%;}
 
   footer{
@@ -427,9 +421,9 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span data-i18n="hero.call">Call now</span>
       </a>
-      <a class="btn btn-ghost" href="#contact">
+      <a class="btn btn-ghost" href="https://line.me/ti/p/CrNUYmJaeP" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
-        <span data-i18n="hero.line">LINE / Contact</span>
+        <span data-i18n="hero.line">Chat on LINE</span>
       </a>
     </div>
 
@@ -559,11 +553,7 @@
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
         <div>
           <div class="label" data-i18n="contact.line.label">LINE</div>
-          <div class="value" data-i18n="contact.line.pending">Coming soon</div>
-          <div class="line-note">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
-            <span data-i18n="contact.line.note">LINE ID not published yet — please call for now.</span>
-          </div>
+          <a class="value" href="https://line.me/ti/p/CrNUYmJaeP" target="_blank" rel="noopener" data-i18n="contact.line.open">Chat on LINE</a>
         </div>
       </div>
       <div class="contact-row">
@@ -603,7 +593,7 @@
 <script>
 (function(){
   // ---- Central config: set this once the LINE ID / link is known ----
-  var LINE_URL = null; // e.g. "https://line.me/R/ti/p/@your-line-id"
+  var LINE_URL = "https://line.me/ti/p/CrNUYmJaeP";
 
   var STORAGE_KEY = "mrfixit_lang";
 
@@ -612,7 +602,7 @@
       "nav.services":"Services","nav.ac":"AC Specialist","nav.process":"Process","nav.contact":"Contact",
       "hero.eyebrow":"Auto Workshop · Krabi",
       "hero.sub":"Your car repair workshop in Krabi — with a sharp focus on diagnosing and fixing car air conditioning.",
-      "hero.call":"Call now","hero.line":"LINE / Contact",
+      "hero.call":"Call now","hero.line":"Chat on LINE",
       "services.kicker":"What we do","services.title":"Repair &amp; maintenance",
       "services.sub":"Car, motorcycle and boat maintenance and repair, plus full AC diagnostics — handled at one workshop in Krabi.",
       "services.feature.tag":"SPECIALTY",
@@ -642,8 +632,7 @@
       "process.s2.title":"Describe the problem","process.s2.body":"Tell us what's happening with your car or AC so we know what to expect.",
       "process.s3.title":"Agree on a time","process.s3.body":"We agree on a date and time to bring the car to the workshop in Krabi.",
       "contact.kicker":"Contact","contact.title":"Reach the workshop",
-      "contact.phone.label":"Phone","contact.line.label":"LINE","contact.line.pending":"Coming soon",
-      "contact.line.note":"LINE ID not published yet — please call for now.",
+      "contact.phone.label":"Phone","contact.line.label":"LINE","contact.line.open":"Chat on LINE",
       "contact.address.label":"Address","contact.address.landmark":"Near: อู่ บีมโมดิฟาย ออโต้ เซอร์วิส (Beam Modify Auto Service)","contact.directions":"Get directions",
       "stickybar.line":"LINE",
       "footer.text":"Car repair &amp; air conditioning workshop, Krabi, Thailand."
@@ -652,7 +641,7 @@
       "nav.services":"บริการ","nav.ac":"ผู้เชี่ยวชาญแอร์","nav.process":"ขั้นตอน","nav.contact":"ติดต่อ",
       "hero.eyebrow":"อู่ซ่อมรถ · กระบี่",
       "hero.sub":"อู่ซ่อมรถยนต์ในจังหวัดกระบี่ เชี่ยวชาญด้านการตรวจวินิจฉัยและซ่อมระบบแอร์รถยนต์โดยเฉพาะ",
-      "hero.call":"โทรเลย","hero.line":"LINE / ติดต่อ",
+      "hero.call":"โทรเลย","hero.line":"แชทผ่าน LINE",
       "services.kicker":"บริการของเรา","services.title":"ซ่อมและบำรุงรักษา",
       "services.sub":"ซ่อมและบำรุงรักษารถยนต์ มอเตอร์ไซค์ และเรือ พร้อมตรวจวินิจฉัยระบบแอร์อย่างละเอียด ที่อู่เดียวในกระบี่",
       "services.feature.tag":"ความเชี่ยวชาญพิเศษ",
@@ -682,8 +671,7 @@
       "process.s2.title":"แจ้งปัญหา","process.s2.body":"บอกอาการของรถหรือแอร์ให้เราทราบ เพื่อให้เราเตรียมพร้อม",
       "process.s3.title":"นัดวันเวลา","process.s3.body":"ตกลงวันและเวลานำรถเข้ามาที่อู่ในกระบี่",
       "contact.kicker":"ติดต่อ","contact.title":"ติดต่ออู่",
-      "contact.phone.label":"โทรศัพท์","contact.line.label":"LINE","contact.line.pending":"เร็วๆ นี้",
-      "contact.line.note":"ยังไม่มี LINE ID ในขณะนี้ กรุณาโทรติดต่อก่อน",
+      "contact.phone.label":"โทรศัพท์","contact.line.label":"LINE","contact.line.open":"แชทผ่าน LINE",
       "contact.address.label":"ที่อยู่","contact.address.landmark":"ใกล้กับ: อู่ บีมโมดิฟาย ออโต้ เซอร์วิส","contact.directions":"ดูเส้นทาง",
       "stickybar.line":"LINE",
       "footer.text":"อู่ซ่อมรถยนต์และแอร์รถยนต์ จังหวัดกระบี่ ประเทศไทย"
