@@ -370,6 +370,22 @@
     border-bottom:1px solid var(--border);
     position:relative;
   }
+  /* ---------- GALLERY ---------- */
+  .gallery-section{background:var(--bg);}
+  .gallery{display:grid; gap:14px; grid-template-columns:1fr;}
+  @media(min-width:760px){.gallery{grid-template-columns:repeat(3,1fr);}}
+  .gallery-item{
+    margin:0; position:relative; border-radius:14px; overflow:hidden;
+    border:1px solid var(--border);
+    box-shadow:0 20px 50px -26px rgba(0,0,0,.7);
+  }
+  .gallery-item img{width:100%; height:auto; display:block;}
+  .gallery-item figcaption{
+    position:absolute; left:0; right:0; bottom:0;
+    padding:26px 16px 14px; font-size:15px; font-weight:600; color:var(--text);
+    background:linear-gradient(to top, rgba(15,18,22,.92), transparent);
+  }
+
   .ac-photo{
     margin:0 0 20px; border-radius:16px; overflow:hidden;
     border:1px solid var(--border);
@@ -626,6 +642,29 @@
   </div>
 </section>
 
+<section class="gallery-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="gallery.kicker">What we work on</span>
+      <h2 data-i18n="gallery.title">Cars, motorcycles, boats</h2>
+    </div>
+    <div class="gallery reveal-stagger">
+      <figure class="gallery-item reveal">
+        <img src="assets/shop.jpg" alt="Car raised on a workshop lift" loading="lazy" width="1344" height="752">
+        <figcaption data-i18n="gallery.cap1">Cars</figcaption>
+      </figure>
+      <figure class="gallery-item reveal">
+        <img src="assets/moto.jpg" alt="Motorcycle and scooter in a workshop" loading="lazy" width="1344" height="752">
+        <figcaption data-i18n="gallery.cap2">Motorcycles &amp; scooters</figcaption>
+      </figure>
+      <figure class="gallery-item reveal">
+        <img src="assets/boat.jpg" alt="Boat outboard engine at a dock" loading="lazy" width="1344" height="752">
+        <figcaption data-i18n="gallery.cap3">Boat engines</figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
 <section id="process">
   <div class="wrap">
     <div class="section-head reveal">
@@ -754,6 +793,8 @@
       "ac.noise.title":"Unusual noises","ac.noise.body":"Rattling, squealing or clicking sounds when the AC or compressor is running.",
       "ac.smell.title":"Odd smells","ac.smell.body":"Musty, sour or burning smells coming from the vents when the AC is on.",
       "ac.note":"These symptoms can have several different causes — bring the car in and we'll diagnose it properly before any repair.",
+      "gallery.kicker":"What we work on","gallery.title":"Cars, motorcycles, boats",
+      "gallery.cap1":"Cars","gallery.cap2":"Motorcycles &amp; scooters","gallery.cap3":"Boat engines",
       "process.kicker":"How it works","process.title":"Booking is simple",
       "process.s1.title":"Get in touch","process.s1.body":"Call or message us on LINE to reach the workshop.",
       "process.s2.title":"Describe the problem","process.s2.body":"Tell us what's happening with your car or AC so we know what to expect.",
@@ -797,6 +838,8 @@
       "ac.noise.title":"มีเสียงผิดปกติ","ac.noise.body":"มีเสียงดังกึกกัก เสียงหวีด หรือเสียงคลิกเมื่อแอร์หรือคอมเพรสเซอร์ทำงาน",
       "ac.smell.title":"มีกลิ่นผิดปกติ","ac.smell.body":"มีกลิ่นอับ กลิ่นเปรี้ยว หรือกลิ่นไหม้ออกมาจากช่องแอร์เมื่อเปิดใช้งาน",
       "ac.note":"อาการเหล่านี้อาจเกิดจากสาเหตุที่แตกต่างกันได้หลายอย่าง นำรถเข้ามาให้เราตรวจวินิจฉัยอย่างละเอียดก่อนทำการซ่อม",
+      "gallery.kicker":"งานที่เราดูแล","gallery.title":"รถยนต์ มอเตอร์ไซค์ และเรือ",
+      "gallery.cap1":"รถยนต์","gallery.cap2":"มอเตอร์ไซค์และสกู๊ตเตอร์","gallery.cap3":"เครื่องยนต์เรือ",
       "process.kicker":"ขั้นตอนการทำงาน","process.title":"นัดหมายง่ายๆ",
       "process.s1.title":"ติดต่อเรา","process.s1.body":"โทรหรือทักไลน์เพื่อติดต่ออู่",
       "process.s2.title":"แจ้งปัญหา","process.s2.body":"บอกอาการของรถหรือแอร์ให้เราทราบ เพื่อให้เราเตรียมพร้อม",
