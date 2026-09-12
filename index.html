@@ -363,6 +363,14 @@
   .contact-row .icon svg{width:21px; height:21px; stroke:var(--cyan);}
   .contact-row .label{font-size:13px; color:var(--text-dim); margin-bottom:3px; font-weight:600;}
   .contact-row .value{font-size:17px; font-weight:600;}
+  .contact-row a.value{
+    display:inline-flex; align-items:center; gap:8px;
+    padding:9px 16px; margin-top:2px; border-radius:10px;
+    background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.3);
+    transition:transform .15s var(--ease), background .15s ease, border-color .15s ease;
+  }
+  .contact-row a.value:hover{background:rgba(0,212,255,.18); border-color:rgba(0,212,255,.5);}
+  .contact-row a.value:active{transform:scale(.95); background:rgba(0,212,255,.24);}
   .contact-row a.value{color:var(--cyan);}
   .map-btn{margin-top:18px; width:100%;}
 
