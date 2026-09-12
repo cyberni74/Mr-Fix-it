@@ -220,6 +220,8 @@
   .btn-primary:hover{background:#33ddff;}
   .btn-ghost{background:transparent; border-color:var(--border); color:var(--text);}
   .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan);}
+  .btn-line{background:#06c755; color:#fff; box-shadow:0 8px 24px -8px rgba(6,199,85,.5);}
+  .btn-line:hover{background:#07dd5f;}
   .btn svg{width:19px;height:19px;flex:none;}
 
   .hero-badge-wrap{margin-top:44px; display:flex; justify-content:center; position:relative;}
@@ -367,11 +369,16 @@
     display:inline-flex; align-items:center; gap:8px;
     padding:9px 16px; margin-top:2px; border-radius:10px;
     background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.3);
+    color:var(--cyan);
     transition:transform .15s var(--ease), background .15s ease, border-color .15s ease;
   }
   .contact-row a.value:hover{background:rgba(0,212,255,.18); border-color:rgba(0,212,255,.5);}
   .contact-row a.value:active{transform:scale(.95); background:rgba(0,212,255,.24);}
-  .contact-row a.value{color:var(--cyan);}
+  .contact-row a.value.line-value{
+    background:rgba(6,199,85,.12); border-color:rgba(6,199,85,.4); color:#2fe07e;
+  }
+  .contact-row a.value.line-value:hover{background:rgba(6,199,85,.2); border-color:rgba(6,199,85,.6);}
+  .contact-row a.value.line-value:active{background:rgba(6,199,85,.28);}
   .map-btn{margin-top:18px; width:100%;}
 
   footer{
@@ -392,7 +399,7 @@
     display:flex; gap:10px;
   }
   .stickybar .btn{flex:1; padding:13px 10px; font-size:15px; min-height:50px;}
-  .stickybar .btn-line{background:var(--surface-2); border:1px solid var(--border); color:var(--text-dim);}
+  .stickybar .btn-line{border:none;}
 
   .visually-hidden{
     position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
@@ -429,7 +436,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
         <span data-i18n="hero.call">Call now</span>
       </a>
-      <a class="btn btn-ghost" href="https://line.me/ti/p/CrNUYmJaeP" target="_blank" rel="noopener">
+      <a class="btn btn-line" href="https://line.me/ti/p/CrNUYmJaeP" target="_blank" rel="noopener">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         <span data-i18n="hero.line">Chat on LINE</span>
       </a>
@@ -561,7 +568,7 @@
         <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
         <div>
           <div class="label" data-i18n="contact.line.label">LINE</div>
-          <a class="value" href="https://line.me/ti/p/CrNUYmJaeP" target="_blank" rel="noopener" data-i18n="contact.line.open">Chat on LINE</a>
+          <a class="value line-value" href="https://line.me/ti/p/CrNUYmJaeP" target="_blank" rel="noopener" data-i18n="contact.line.open">Chat on LINE</a>
         </div>
       </div>
       <div class="contact-row">
