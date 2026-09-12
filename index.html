@@ -1,0 +1,711 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Mr.Fix it — Auto Repair & AC Specialist, Krabi</title>
+<meta name="description" content="Mr.Fix it — car repair and air conditioning specialist workshop in Krabi, Thailand.">
+<link rel="icon" type="image/png" href="assets/logo-full.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800&family=Barlow:wght@400;500;600;700&family=Noto+Sans+Thai:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#0f1216;
+    --bg-alt:#151a1f;
+    --surface:#1a2027;
+    --surface-2:#212830;
+    --border:#2a323b;
+    --text:#f1f4f6;
+    --text-dim:#98a3ab;
+    --cyan:#00d4ff;
+    --cyan-dim:#0aa8cc;
+    --lime:#b6ff3f;
+    --radius:16px;
+    --maxw:1160px;
+    --safe-b: env(safe-area-inset-bottom, 0px);
+    --ease: cubic-bezier(.22,.9,.28,1);
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--bg);
+    color:var(--text);
+    font-family:'Barlow','Noto Sans Thai',system-ui,sans-serif;
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+    width:100%;
+  }
+  html[lang="th"] body{font-family:'Noto Sans Thai','Barlow',system-ui,sans-serif;}
+  h1,h2,h3,.display{
+    font-family:'Barlow Condensed','Noto Sans Thai',sans-serif;
+    font-weight:800;
+    letter-spacing:-.01em;
+    line-height:1.02;
+    margin:0;
+  }
+  html[lang="th"] h1, html[lang="th"] h2, html[lang="th"] h3, html[lang="th"] .display{
+    font-family:'Noto Sans Thai',sans-serif;
+    font-weight:700;
+    letter-spacing:0;
+  }
+  p{margin:0;}
+  img,svg{display:block;max-width:100%;}
+  a{color:inherit;text-decoration:none;}
+  button{font-family:inherit;}
+  .wrap{max-width:var(--maxw); margin:0 auto; padding:0 20px;}
+  :focus-visible{outline:2px solid var(--cyan); outline-offset:3px; border-radius:4px;}
+
+  /* ---------- SCROLL REVEAL ---------- */
+  .reveal{opacity:0; transform:translateY(22px); transition:opacity .7s var(--ease), transform .7s var(--ease);}
+  .reveal.visible{opacity:1; transform:translateY(0);}
+  .reveal-stagger .reveal:nth-child(1){transition-delay:0s;}
+  .reveal-stagger .reveal:nth-child(2){transition-delay:.08s;}
+  .reveal-stagger .reveal:nth-child(3){transition-delay:.16s;}
+  .reveal-stagger .reveal:nth-child(4){transition-delay:.24s;}
+  .reveal-stagger .reveal:nth-child(5){transition-delay:.32s;}
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1; transform:none;}
+  }
+
+  /* ---------- LOGO MARK ---------- */
+  .logo-icon{height:36px; width:auto; flex:none; mix-blend-mode:screen;}
+  footer .logo-icon{height:30px;}
+
+  /* ---------- NAV ---------- */
+  header.nav{
+    position:sticky; top:0; z-index:50;
+    background:rgba(15,18,22,.6);
+    backdrop-filter:blur(14px) saturate(140%);
+    -webkit-backdrop-filter:blur(14px) saturate(140%);
+    border-bottom:1px solid rgba(42,50,59,.5);
+    transition:background .3s ease, border-color .3s ease, box-shadow .3s ease;
+  }
+  header.nav.scrolled{
+    background:rgba(15,18,22,.86);
+    border-bottom-color:rgba(42,50,59,.9);
+    box-shadow:0 8px 30px rgba(0,0,0,.25);
+  }
+  .nav-inner{
+    max-width:var(--maxw); margin:0 auto; padding:12px 20px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .wordmark{
+    font-family:'Barlow Condensed',sans-serif;
+    font-weight:800; font-size:21px; letter-spacing:-.01em;
+    display:flex; align-items:center; gap:9px;
+  }
+  .wordmark .fix{color:var(--cyan);}
+  .wordmark .dot{color:var(--lime);}
+  nav.links{display:none; gap:30px; font-size:15px; color:var(--text-dim);}
+  nav.links a{transition:color .15s; position:relative;}
+  nav.links a::after{
+    content:""; position:absolute; left:0; right:0; bottom:-6px; height:2px;
+    background:var(--cyan); transform:scaleX(0); transform-origin:left; transition:transform .25s var(--ease);
+  }
+  nav.links a:hover{color:var(--text);}
+  nav.links a:hover::after{transform:scaleX(1);}
+  @media(min-width:760px){nav.links{display:flex;}}
+  .lang-toggle{
+    display:flex; border:1px solid var(--border); border-radius:999px; overflow:hidden;
+    background:var(--surface);
+  }
+  .lang-toggle button{
+    border:none; background:transparent; color:var(--text-dim);
+    padding:6px 12px; font-size:13px; font-weight:600; cursor:pointer;
+    min-width:44px; min-height:36px; transition:background .2s, color .2s;
+  }
+  .lang-toggle button.active{background:var(--cyan); color:#07161a;}
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    padding:60px 0 56px;
+    background:var(--bg);
+    overflow:hidden;
+  }
+  .hero .blob{
+    position:absolute; border-radius:50%; filter:blur(60px); pointer-events:none;
+    animation:drift 16s ease-in-out infinite alternate;
+  }
+  .hero .blob-cyan{width:340px; height:340px; background:rgba(0,212,255,.16); top:-120px; right:-100px;}
+  .hero .blob-lime{width:260px; height:260px; background:rgba(182,255,63,.09); bottom:-100px; left:-80px; animation-delay:-6s;}
+  @keyframes drift{
+    0%{transform:translate(0,0) scale(1);}
+    100%{transform:translate(-16px,20px) scale(1.08);}
+  }
+  @media (prefers-reduced-motion: reduce){.hero .blob{animation:none;}}
+  .hero::before{
+    content:"";
+    position:absolute; inset:0;
+    background-image: repeating-linear-gradient(115deg, rgba(255,255,255,.03) 0 2px, transparent 2px 34px);
+    mask-image: linear-gradient(to bottom, black, transparent 70%);
+    pointer-events:none;
+  }
+  .hero-inner{position:relative; max-width:var(--maxw); margin:0 auto; padding:0 20px;}
+  .eyebrow-tag{
+    display:inline-flex; align-items:center; gap:8px;
+    font-size:13px; color:var(--cyan); font-weight:600;
+    border:1px solid rgba(0,212,255,.35); background:rgba(0,212,255,.08);
+    padding:6px 12px; border-radius:999px; margin-bottom:22px;
+  }
+  .eyebrow-tag .pulse{
+    width:7px; height:7px; border-radius:50%; background:var(--lime);
+    box-shadow:0 0 0 0 rgba(182,255,63,.6);
+    animation:pulse 2.2s ease-out infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(182,255,63,.5);}
+    70%{box-shadow:0 0 0 8px rgba(182,255,63,0);}
+    100%{box-shadow:0 0 0 0 rgba(182,255,63,0);}
+  }
+  .hero h1{
+    font-size:clamp(52px, 15vw, 96px);
+    color:var(--text);
+  }
+  .hero h1 .accent{
+    background:linear-gradient(100deg, var(--cyan) 10%, var(--lime) 90%);
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{
+    margin-top:18px; font-size:clamp(17px,4.4vw,21px); color:var(--text-dim);
+    max-width:44ch; line-height:1.5;
+  }
+  .hero-cta{display:flex; flex-wrap:wrap; gap:12px; margin-top:32px;}
+  .btn{
+    display:inline-flex; align-items:center; justify-content:center; gap:8px;
+    padding:15px 22px; border-radius:11px; font-weight:600; font-size:16px;
+    min-height:52px; cursor:pointer; border:1px solid transparent;
+    transition:transform .15s var(--ease), background .15s ease, border-color .15s ease, box-shadow .2s ease;
+  }
+  .btn:active{transform:scale(.96);}
+  .btn-primary{background:var(--cyan); color:#07161a; box-shadow:0 8px 24px -8px rgba(0,212,255,.55);}
+  .btn-primary:hover{background:#33ddff;}
+  .btn-ghost{background:transparent; border-color:var(--border); color:var(--text);}
+  .btn-ghost:hover{border-color:var(--cyan); color:var(--cyan);}
+  .btn svg{width:19px;height:19px;flex:none;}
+
+  .hero-badge-wrap{margin-top:44px; display:flex; justify-content:center; position:relative;}
+  .hero-badge-wrap::before{
+    content:""; position:absolute; width:340px; height:340px; max-width:80vw; max-height:80vw;
+    background:radial-gradient(circle, rgba(0,212,255,.28), rgba(182,255,63,.08) 55%, transparent 72%);
+    filter:blur(20px); border-radius:50%;
+  }
+  .hero-logo{
+    position:relative; width:min(360px,82vw); mix-blend-mode:screen;
+    opacity:0; transform:scale(.9);
+    animation:logo-in 1s var(--ease) forwards .2s;
+  }
+  @keyframes logo-in{to{opacity:1; transform:scale(1);}}
+  @media (prefers-reduced-motion: reduce){
+    .hero-logo{opacity:1 !important; transform:scale(1) !important; animation:none !important;}
+  }
+  .scroll-cue{
+    display:flex; justify-content:center; margin-top:44px; color:var(--text-dim);
+    animation:bob 2s ease-in-out infinite;
+  }
+  .scroll-cue svg{width:20px;height:20px;}
+  @keyframes bob{0%,100%{transform:translateY(0);}50%{transform:translateY(6px);}}
+  @media (prefers-reduced-motion: reduce){.scroll-cue{animation:none;}}
+
+  /* ---------- SECTION SHELL ---------- */
+  section{padding:72px 0;}
+  .section-head{max-width:58ch; margin-bottom:36px;}
+  .section-head .kicker{color:var(--cyan); font-weight:700; font-size:13.5px; letter-spacing:.04em; text-transform:uppercase; margin-bottom:10px; display:block;}
+  .section-head h2{font-size:clamp(32px,8vw,48px);}
+  .section-head p{color:var(--text-dim); margin-top:14px; font-size:17px; line-height:1.55;}
+
+  /* ---------- BENTO: SERVICES ---------- */
+  .bento{
+    display:grid; gap:14px; grid-template-columns:1fr;
+  }
+  @media(min-width:700px){
+    .bento{grid-template-columns:repeat(4,1fr); grid-auto-rows:minmax(120px,auto);}
+    .bento .cell-feature{grid-column:span 4;}
+    .bento .cell-2{grid-column:span 2;}
+  }
+  @media(min-width:1000px){
+    .bento .cell-feature{grid-column:span 2; grid-row:span 2;}
+    .bento .cell-2{grid-column:span 2;}
+  }
+  .cell{
+    border:1px solid var(--border); border-radius:var(--radius);
+    background:var(--surface);
+    padding:24px;
+    transition:border-color .25s ease, transform .2s var(--ease), background .25s ease;
+  }
+  .cell:active{transform:scale(.98);}
+  .cell-feature{
+    background:linear-gradient(150deg, var(--surface-2), var(--surface));
+    border-left:3px solid var(--cyan);
+    display:flex; flex-direction:column; justify-content:center;
+  }
+  .cell-feature .tag{
+    display:inline-flex; align-items:center; gap:6px; margin-bottom:14px; font-size:12px; font-weight:700;
+    color:var(--lime); letter-spacing:.06em; text-transform:uppercase;
+  }
+  .cell-feature .tag svg{width:14px;height:14px;}
+  .cell-feature h3{font-size:clamp(24px,5vw,30px); margin-bottom:10px;}
+  .cell-feature p{color:var(--text-dim); font-size:15.5px; line-height:1.6;}
+  .cell-item{display:flex; flex-direction:column; gap:12px;}
+  .cell-item .icon{
+    width:40px; height:40px; border-radius:10px; flex:none;
+    background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.25);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .cell-item .icon svg{width:20px; height:20px; stroke:var(--cyan);}
+  .cell-item h4{font-size:17px; font-weight:600; font-family:'Barlow',sans-serif;}
+  html[lang="th"] .cell-item h4{font-family:'Noto Sans Thai',sans-serif;}
+  .cell-item p{font-size:14px; color:var(--text-dim); line-height:1.55;}
+
+  /* ---------- AC SYMPTOMS (bento) ---------- */
+  .ac-section{
+    background:var(--bg-alt);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    position:relative;
+  }
+  .ac-bento{display:grid; gap:12px; grid-template-columns:1fr;}
+  @media(min-width:700px){.ac-bento{grid-template-columns:repeat(4,1fr);}}
+  .symptom{
+    border:1px solid var(--border); border-radius:14px; padding:22px;
+    background:var(--surface);
+    position:relative; overflow:hidden;
+  }
+  @media(min-width:700px){.symptom{grid-column:span 2;}}
+  .symptom::before{
+    content:""; position:absolute; left:0; top:0; bottom:0; width:3px;
+    background:var(--lime);
+  }
+  .symptom h4{font-size:19px; margin-bottom:7px; font-weight:600; font-family:'Barlow',sans-serif;}
+  html[lang="th"] .symptom h4{font-family:'Noto Sans Thai',sans-serif;}
+  .symptom p{font-size:14.5px; color:var(--text-dim); line-height:1.55;}
+  .ac-note{
+    grid-column:1 / -1;
+    margin-top:4px; padding:18px 20px; border-radius:12px;
+    background:rgba(0,212,255,.07); border:1px solid rgba(0,212,255,.22);
+    font-size:14.5px; color:var(--text-dim);
+  }
+
+  /* ---------- PROCESS ---------- */
+  .process{display:grid; gap:0; grid-template-columns:1fr; position:relative;}
+  @media(min-width:760px){.process{grid-template-columns:repeat(3,1fr); gap:22px;}}
+  .step{
+    position:relative; padding:26px 20px 26px 62px; border-bottom:1px solid var(--border);
+  }
+  .step:last-child{border-bottom:none;}
+  @media(min-width:760px){
+    .step{border-bottom:none; border-left:1px solid var(--border); padding:0 0 0 26px;}
+    .step:first-child{border-left:none; padding-left:0;}
+  }
+  .step .num{
+    position:absolute; left:0; top:24px; font-family:'Barlow Condensed',sans-serif;
+    font-size:42px; font-weight:800; color:transparent;
+    -webkit-text-stroke:1.5px var(--cyan);
+    width:46px; text-align:center;
+  }
+  @media(min-width:760px){.step .num{position:static; margin-bottom:16px;}}
+  .step h3{font-size:22px; margin-bottom:9px;}
+  .step p{color:var(--text-dim); font-size:15px; line-height:1.55;}
+
+  /* ---------- CONTACT ---------- */
+  .contact-card{
+    background:linear-gradient(160deg, var(--surface-2), var(--surface));
+    border:1px solid var(--border); border-radius:20px; padding:30px 24px;
+  }
+  .contact-row{
+    display:flex; align-items:flex-start; gap:16px;
+    padding:16px 0; border-bottom:1px solid var(--border);
+  }
+  .contact-row:last-of-type{border-bottom:none;}
+  .contact-row .icon{
+    flex:none; width:44px; height:44px; border-radius:11px;
+    background:rgba(0,212,255,.1); border:1px solid rgba(0,212,255,.25);
+    display:flex; align-items:center; justify-content:center;
+  }
+  .contact-row .icon svg{width:21px; height:21px; stroke:var(--cyan);}
+  .contact-row .label{font-size:13px; color:var(--text-dim); margin-bottom:3px; font-weight:600;}
+  .contact-row .value{font-size:17px; font-weight:600;}
+  .contact-row a.value{color:var(--cyan);}
+  .line-note{
+    margin-top:6px; display:flex; align-items:center; gap:8px;
+    padding:10px 14px; border-radius:9px; background:rgba(182,255,63,.08);
+    border:1px solid rgba(182,255,63,.25); font-size:13.5px; color:var(--text-dim);
+  }
+  .line-note svg{flex:none; width:16px; height:16px; stroke:var(--lime);}
+  .map-btn{margin-top:18px; width:100%;}
+
+  footer{
+    padding:36px 0 calc(110px + var(--safe-b));
+    border-top:1px solid var(--border); text-align:center;
+  }
+  footer p{color:var(--text-dim); font-size:13px; line-height:1.6; margin-top:4px;}
+  footer .wordmark{justify-content:center; margin-bottom:12px;}
+
+  /* ---------- STICKY BOTTOM BAR ---------- */
+  .stickybar{
+    position:fixed; left:0; right:0; bottom:0; z-index:60;
+    background:rgba(15,18,22,.92);
+    backdrop-filter:blur(16px);
+    -webkit-backdrop-filter:blur(16px);
+    border-top:1px solid var(--border);
+    padding:10px 14px calc(10px + var(--safe-b));
+    display:flex; gap:10px;
+  }
+  .stickybar .btn{flex:1; padding:13px 10px; font-size:15px; min-height:50px;}
+  .stickybar .btn-line{background:var(--surface-2); border:1px solid var(--border); color:var(--text-dim);}
+
+  .visually-hidden{
+    position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0 0 0 0); white-space:nowrap;
+  }
+</style>
+</head>
+<body>
+
+<header class="nav" id="siteNav">
+  <div class="nav-inner">
+    <div class="wordmark"><img class="logo-icon" src="assets/logo-icon.png" alt="Mr.Fix it"></div>
+    <nav class="links">
+      <a href="#services" data-i18n="nav.services">Services</a>
+      <a href="#ac" data-i18n="nav.ac">AC Specialist</a>
+      <a href="#process" data-i18n="nav.process">Process</a>
+      <a href="#contact" data-i18n="nav.contact">Contact</a>
+    </nav>
+    <div class="lang-toggle" role="group" aria-label="Language">
+      <button type="button" data-lang="en" id="btn-en">EN</button>
+      <button type="button" data-lang="th" id="btn-th">ไทย</button>
+    </div>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="blob blob-cyan" aria-hidden="true"></div>
+  <div class="blob blob-lime" aria-hidden="true"></div>
+  <div class="hero-inner">
+    <span class="eyebrow-tag reveal"><span class="pulse"></span><span data-i18n="hero.eyebrow">Auto Workshop · Krabi</span></span>
+    <h1 class="reveal"><span class="accent">Mr.</span>Fix it</h1>
+    <p class="hero-sub reveal" data-i18n="hero.sub">Your car repair workshop in Krabi — with a sharp focus on diagnosing and fixing car air conditioning.</p>
+    <div class="hero-cta reveal">
+      <a class="btn btn-primary" href="tel:+66808582819">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+        <span data-i18n="hero.call">Call now</span>
+      </a>
+      <a class="btn btn-ghost" href="#contact">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+        <span data-i18n="hero.line">LINE / Contact</span>
+      </a>
+    </div>
+
+    <div class="hero-badge-wrap" aria-hidden="true">
+      <img class="hero-logo" src="assets/logo-full.png" alt="">
+    </div>
+
+    <div class="scroll-cue" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="services.kicker">What we do</span>
+      <h2 data-i18n="services.title">Repair &amp; maintenance</h2>
+      <p data-i18n="services.sub">From full AC diagnostics to everyday maintenance — handled at one workshop in Krabi.</p>
+    </div>
+
+    <div class="bento reveal-stagger">
+      <div class="cell cell-feature reveal">
+        <span class="tag"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v2m0 16v2M4.93 4.93l1.41 1.41m11.32 11.32l1.41 1.41M2 12h2m16 0h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41"/><circle cx="12" cy="12" r="4"/></svg><span data-i18n="services.feature.tag">SPECIALTY</span></span>
+        <h3 data-i18n="services.feature.title">Car air conditioning — diagnosis, repair &amp; service</h3>
+        <p data-i18n="services.feature.body">Full AC system check, refrigerant and leak diagnosis, compressor and component repair, and regular AC servicing so the system keeps performing in Krabi's heat.</p>
+      </div>
+
+      <div class="cell cell-item cell-2 reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <div><h4 data-i18n="services.diag.title">General vehicle diagnostics</h4><p data-i18n="services.diag.body">Computer-based fault finding across engine, electrical and warning-light issues.</p></div>
+      </div>
+      <div class="cell cell-item cell-2 reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v6m0 8v6m10-10h-6M8 12H2"/><circle cx="12" cy="12" r="3"/></svg></div>
+        <div><h4 data-i18n="services.oil.title">Oil &amp; filter change</h4><p data-i18n="services.oil.body">Engine oil, oil filter and air filter replacement on a regular service schedule.</p></div>
+      </div>
+      <div class="cell cell-item cell-2 reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="8"/><path d="M12 8v4l3 3"/></svg></div>
+        <div><h4 data-i18n="services.brakes.title">Brakes &amp; suspension</h4><p data-i18n="services.brakes.body">Brake pads, discs and suspension components inspected and repaired.</p></div>
+      </div>
+      <div class="cell cell-item cell-2 reveal">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke-linecap="round" stroke-linejoin="round"><path d="M5 10h2l1-3h8l1 3h2v6H5z"/><path d="M8 16v2m8-2v2"/></svg></div>
+        <div><h4 data-i18n="services.battery.title">Battery &amp; charging system</h4><p data-i18n="services.battery.body">Battery testing, replacement and checks on the vehicle's charging system.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="ac" class="ac-section">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="ac.kicker">Air conditioning</span>
+      <h2 data-i18n="ac.title">Signs your AC needs a check</h2>
+      <p data-i18n="ac.sub">Any of these can point to a car AC problem worth diagnosing before it gets worse.</p>
+    </div>
+    <div class="ac-bento reveal-stagger">
+      <div class="symptom reveal">
+        <h4 data-i18n="ac.cool.title">Weak or no cooling</h4>
+        <p data-i18n="ac.cool.body">The AC runs but the cabin doesn't get properly cold, even at full setting.</p>
+      </div>
+      <div class="symptom reveal">
+        <h4 data-i18n="ac.flow.title">Low airflow</h4>
+        <p data-i18n="ac.flow.body">Air barely comes out of the vents, or airflow feels much weaker than before.</p>
+      </div>
+      <div class="symptom reveal">
+        <h4 data-i18n="ac.noise.title">Unusual noises</h4>
+        <p data-i18n="ac.noise.body">Rattling, squealing or clicking sounds when the AC or compressor is running.</p>
+      </div>
+      <div class="symptom reveal">
+        <h4 data-i18n="ac.smell.title">Odd smells</h4>
+        <p data-i18n="ac.smell.body">Musty, sour or burning smells coming from the vents when the AC is on.</p>
+      </div>
+      <div class="ac-note reveal" data-i18n="ac.note">These symptoms can have several different causes — bring the car in and we'll diagnose it properly before any repair.</div>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="process.kicker">How it works</span>
+      <h2 data-i18n="process.title">Booking is simple</h2>
+    </div>
+    <div class="process reveal-stagger">
+      <div class="step reveal">
+        <div class="num">01</div>
+        <h3 data-i18n="process.s1.title">Get in touch</h3>
+        <p data-i18n="process.s1.body">Call or message us on LINE to reach the workshop.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">02</div>
+        <h3 data-i18n="process.s2.title">Describe the problem</h3>
+        <p data-i18n="process.s2.body">Tell us what's happening with your car or AC so we know what to expect.</p>
+      </div>
+      <div class="step reveal">
+        <div class="num">03</div>
+        <h3 data-i18n="process.s3.title">Agree on a time</h3>
+        <p data-i18n="process.s3.body">We agree on a date and time to bring the car to the workshop in Krabi.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="contact">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="kicker" data-i18n="contact.kicker">Contact</span>
+      <h2 data-i18n="contact.title">Reach the workshop</h2>
+    </div>
+    <div class="contact-card reveal">
+      <div class="contact-row">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></div>
+        <div>
+          <div class="label" data-i18n="contact.phone.label">Phone</div>
+          <a class="value" href="tel:+66808582819">+66 80 858 2819</a>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div>
+          <div class="label" data-i18n="contact.line.label">LINE</div>
+          <div class="value" data-i18n="contact.line.pending">Coming soon</div>
+          <div class="line-note">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4m0 4h.01"/></svg>
+            <span data-i18n="contact.line.note">LINE ID not published yet — please call for now.</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-row">
+        <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></div>
+        <div>
+          <div class="label" data-i18n="contact.address.label">Address</div>
+          <div class="value" style="font-weight:500; font-size:15px; color:var(--text-dim); line-height:1.5;">231 กบ. 6017 ต.กระบี่น้อย, Krabi Noi, Mueang Krabi District, Krabi 81000, Thailand</div>
+        </div>
+      </div>
+      <a class="btn btn-primary map-btn" href="https://www.google.com/maps/search/?api=1&query=231+%E0%B8%81%E0%B8%9A.+6017+%E0%B8%95.%E0%B8%81%E0%B8%A3%E0%B8%B0%E0%B8%9A%E0%B8%B5%E0%B9%88%E0%B8%99%E0%B9%89%E0%B8%AD%E0%B8%A2+Mueang+Krabi+District+Krabi+81000+Thailand" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 12-9 12s-9-5-9-12a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+        <span data-i18n="contact.directions">Get directions</span>
+      </a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <div class="wordmark"><img class="logo-icon" src="assets/logo-icon.png" alt="Mr.Fix it"></div>
+    <p data-i18n="footer.text">Car repair &amp; air conditioning workshop, Krabi, Thailand.</p>
+  </div>
+</footer>
+
+<div class="stickybar">
+  <a class="btn btn-primary" href="tel:+66808582819">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+    <span data-i18n="hero.call">Call now</span>
+  </a>
+  <button type="button" class="btn btn-line" id="lineStickyBtn">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <span data-i18n="stickybar.line">LINE</span>
+  </button>
+</div>
+
+<script>
+(function(){
+  // ---- Central config: set this once the LINE ID / link is known ----
+  var LINE_URL = null; // e.g. "https://line.me/R/ti/p/@your-line-id"
+
+  var STORAGE_KEY = "mrfixit_lang";
+
+  var translations = {
+    en: {
+      "nav.services":"Services","nav.ac":"AC Specialist","nav.process":"Process","nav.contact":"Contact",
+      "hero.eyebrow":"Auto Workshop · Krabi",
+      "hero.sub":"Your car repair workshop in Krabi — with a sharp focus on diagnosing and fixing car air conditioning.",
+      "hero.call":"Call now","hero.line":"LINE / Contact",
+      "services.kicker":"What we do","services.title":"Repair &amp; maintenance",
+      "services.sub":"From full AC diagnostics to everyday maintenance — handled at one workshop in Krabi.",
+      "services.feature.tag":"SPECIALTY",
+      "services.feature.title":"Car air conditioning — diagnosis, repair &amp; service",
+      "services.feature.body":"Full AC system check, refrigerant and leak diagnosis, compressor and component repair, and regular AC servicing so the system keeps performing in Krabi's heat.",
+      "services.diag.title":"General vehicle diagnostics",
+      "services.diag.body":"Computer-based fault finding across engine, electrical and warning-light issues.",
+      "services.oil.title":"Oil &amp; filter change",
+      "services.oil.body":"Engine oil, oil filter and air filter replacement on a regular service schedule.",
+      "services.brakes.title":"Brakes &amp; suspension",
+      "services.brakes.body":"Brake pads, discs and suspension components inspected and repaired.",
+      "services.battery.title":"Battery &amp; charging system",
+      "services.battery.body":"Battery testing, replacement and checks on the vehicle's charging system.",
+      "ac.kicker":"Air conditioning","ac.title":"Signs your AC needs a check",
+      "ac.sub":"Any of these can point to a car AC problem worth diagnosing before it gets worse.",
+      "ac.cool.title":"Weak or no cooling","ac.cool.body":"The AC runs but the cabin doesn't get properly cold, even at full setting.",
+      "ac.flow.title":"Low airflow","ac.flow.body":"Air barely comes out of the vents, or airflow feels much weaker than before.",
+      "ac.noise.title":"Unusual noises","ac.noise.body":"Rattling, squealing or clicking sounds when the AC or compressor is running.",
+      "ac.smell.title":"Odd smells","ac.smell.body":"Musty, sour or burning smells coming from the vents when the AC is on.",
+      "ac.note":"These symptoms can have several different causes — bring the car in and we'll diagnose it properly before any repair.",
+      "process.kicker":"How it works","process.title":"Booking is simple",
+      "process.s1.title":"Get in touch","process.s1.body":"Call or message us on LINE to reach the workshop.",
+      "process.s2.title":"Describe the problem","process.s2.body":"Tell us what's happening with your car or AC so we know what to expect.",
+      "process.s3.title":"Agree on a time","process.s3.body":"We agree on a date and time to bring the car to the workshop in Krabi.",
+      "contact.kicker":"Contact","contact.title":"Reach the workshop",
+      "contact.phone.label":"Phone","contact.line.label":"LINE","contact.line.pending":"Coming soon",
+      "contact.line.note":"LINE ID not published yet — please call for now.",
+      "contact.address.label":"Address","contact.directions":"Get directions",
+      "stickybar.line":"LINE",
+      "footer.text":"Car repair &amp; air conditioning workshop, Krabi, Thailand."
+    },
+    th: {
+      "nav.services":"บริการ","nav.ac":"ผู้เชี่ยวชาญแอร์","nav.process":"ขั้นตอน","nav.contact":"ติดต่อ",
+      "hero.eyebrow":"อู่ซ่อมรถ · กระบี่",
+      "hero.sub":"อู่ซ่อมรถยนต์ในจังหวัดกระบี่ เชี่ยวชาญด้านการตรวจวินิจฉัยและซ่อมระบบแอร์รถยนต์โดยเฉพาะ",
+      "hero.call":"โทรเลย","hero.line":"LINE / ติดต่อ",
+      "services.kicker":"บริการของเรา","services.title":"ซ่อมและบำรุงรักษา",
+      "services.sub":"ตั้งแต่การตรวจวินิจฉัยระบบแอร์อย่างละเอียด ไปจนถึงงานบำรุงรักษาทั่วไป ที่อู่แห่งเดียวในกระบี่",
+      "services.feature.tag":"ความเชี่ยวชาญพิเศษ",
+      "services.feature.title":"แอร์รถยนต์ — ตรวจวินิจฉัย ซ่อม และบำรุงรักษา",
+      "services.feature.body":"ตรวจเช็กระบบแอร์ทั้งระบบ ตรวจสอบน้ำยาแอร์และจุดรั่ว ซ่อมคอมเพรสเซอร์และชิ้นส่วนต่างๆ พร้อมบำรุงรักษาแอร์อย่างสม่ำเสมอ เพื่อให้ระบบทำงานได้เต็มประสิทธิภาพในอากาศร้อนของกระบี่",
+      "services.diag.title":"ตรวจวินิจฉัยรถยนต์ทั่วไป",
+      "services.diag.body":"ตรวจหาปัญหาด้วยเครื่องคอมพิวเตอร์ ครอบคลุมเครื่องยนต์ ระบบไฟฟ้า และไฟเตือนต่างๆ",
+      "services.oil.title":"เปลี่ยนน้ำมันเครื่องและไส้กรอง",
+      "services.oil.body":"เปลี่ยนน้ำมันเครื่อง ไส้กรองน้ำมันเครื่อง และไส้กรองอากาศ ตามรอบการบำรุงรักษา",
+      "services.brakes.title":"ระบบเบรกและช่วงล่าง",
+      "services.brakes.body":"ตรวจสอบและซ่อมผ้าเบรก จานเบรก และชิ้นส่วนช่วงล่าง",
+      "services.battery.title":"แบตเตอรี่และระบบชาร์จไฟ",
+      "services.battery.body":"ตรวจสอบแบตเตอรี่ เปลี่ยนแบตเตอรี่ และตรวจระบบชาร์จไฟของรถยนต์",
+      "ac.kicker":"ระบบแอร์","ac.title":"สัญญาณที่บอกว่าแอร์ควรได้รับการตรวจเช็ก",
+      "ac.sub":"อาการเหล่านี้อาจบ่งบอกถึงปัญหาแอร์รถยนต์ที่ควรตรวจวินิจฉัยก่อนที่จะแย่ลง",
+      "ac.cool.title":"แอร์ไม่เย็นหรือเย็นน้อยลง","ac.cool.body":"เปิดแอร์แล้วแต่ในรถไม่เย็นเท่าที่ควร แม้เปิดแรงสุด",
+      "ac.flow.title":"ลมออกน้อย","ac.flow.body":"ลมออกจากช่องแอร์น้อยมาก หรือแรงลมอ่อนกว่าปกติอย่างชัดเจน",
+      "ac.noise.title":"มีเสียงผิดปกติ","ac.noise.body":"มีเสียงดังกึกกัก เสียงหวีด หรือเสียงคลิกเมื่อแอร์หรือคอมเพรสเซอร์ทำงาน",
+      "ac.smell.title":"มีกลิ่นผิดปกติ","ac.smell.body":"มีกลิ่นอับ กลิ่นเปรี้ยว หรือกลิ่นไหม้ออกมาจากช่องแอร์เมื่อเปิดใช้งาน",
+      "ac.note":"อาการเหล่านี้อาจเกิดจากสาเหตุที่แตกต่างกันได้หลายอย่าง นำรถเข้ามาให้เราตรวจวินิจฉัยอย่างละเอียดก่อนทำการซ่อม",
+      "process.kicker":"ขั้นตอนการทำงาน","process.title":"นัดหมายง่ายๆ",
+      "process.s1.title":"ติดต่อเรา","process.s1.body":"โทรหรือทักไลน์เพื่อติดต่ออู่",
+      "process.s2.title":"แจ้งปัญหา","process.s2.body":"บอกอาการของรถหรือแอร์ให้เราทราบ เพื่อให้เราเตรียมพร้อม",
+      "process.s3.title":"นัดวันเวลา","process.s3.body":"ตกลงวันและเวลานำรถเข้ามาที่อู่ในกระบี่",
+      "contact.kicker":"ติดต่อ","contact.title":"ติดต่ออู่",
+      "contact.phone.label":"โทรศัพท์","contact.line.label":"LINE","contact.line.pending":"เร็วๆ นี้",
+      "contact.line.note":"ยังไม่มี LINE ID ในขณะนี้ กรุณาโทรติดต่อก่อน",
+      "contact.address.label":"ที่อยู่","contact.directions":"ดูเส้นทาง",
+      "stickybar.line":"LINE",
+      "footer.text":"อู่ซ่อมรถยนต์และแอร์รถยนต์ จังหวัดกระบี่ ประเทศไทย"
+    }
+  };
+
+  function applyLang(lang){
+    document.documentElement.setAttribute("lang", lang);
+    var dict = translations[lang];
+    document.querySelectorAll("[data-i18n]").forEach(function(el){
+      var key = el.getAttribute("data-i18n");
+      if(dict[key] !== undefined){ el.innerHTML = dict[key]; }
+    });
+    document.getElementById("btn-en").classList.toggle("active", lang === "en");
+    document.getElementById("btn-th").classList.toggle("active", lang === "th");
+    try{ localStorage.setItem(STORAGE_KEY, lang); }catch(e){}
+  }
+
+  function detectLang(){
+    try{
+      var saved = localStorage.getItem(STORAGE_KEY);
+      if(saved === "en" || saved === "th") return saved;
+    }catch(e){}
+    var nav = (navigator.language || navigator.userLanguage || "en").toLowerCase();
+    return nav.indexOf("th") === 0 ? "th" : "en";
+  }
+
+  applyLang(detectLang());
+
+  document.getElementById("btn-en").addEventListener("click", function(){ applyLang("en"); });
+  document.getElementById("btn-th").addEventListener("click", function(){ applyLang("th"); });
+
+  function lineFallback(){
+    var lang = document.documentElement.getAttribute("lang");
+    if(LINE_URL){
+      window.open(LINE_URL, "_blank", "noopener");
+      return;
+    }
+    var msg = lang === "th"
+      ? "ยังไม่มี LINE ID ในขณะนี้ กรุณาโทร +66 80 858 2819"
+      : "LINE ID not published yet. Please call +66 80 858 2819.";
+    alert(msg);
+  }
+  document.getElementById("lineStickyBtn").addEventListener("click", lineFallback);
+
+  // ---- Nav depth-on-scroll ----
+  var nav = document.getElementById("siteNav");
+  function onScroll(){
+    if(window.scrollY > 12){ nav.classList.add("scrolled"); }
+    else{ nav.classList.remove("scrolled"); }
+  }
+  window.addEventListener("scroll", onScroll, {passive:true});
+  onScroll();
+
+  // ---- Scroll-reveal ----
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+  var revealEls = document.querySelectorAll(".reveal");
+  if(reduceMotion || !("IntersectionObserver" in window)){
+    revealEls.forEach(function(el){ el.classList.add("visible"); });
+  }else{
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(entry){
+        if(entry.isIntersecting){
+          entry.target.classList.add("visible");
+          io.unobserve(entry.target);
+        }
+      });
+    }, {threshold:0.15, rootMargin:"0px 0px -40px 0px"});
+    revealEls.forEach(function(el){ io.observe(el); });
+  }
+})();
+</script>
+</body>
+</html>
